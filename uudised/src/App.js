@@ -6,6 +6,7 @@ import Uudised from './pages/Uudised';
 import Kontaktid from './pages/Kontakt';
 import Meist from './pages/Meist';
 import LisaUudis from './pages/LisaUudis';
+import HaldaUudiseid from './pages/HaldaUudiseid';
 
 function App() {
   return (
@@ -26,6 +27,9 @@ function App() {
       <Link to="/lisa-uudis">
         <button>Lisa uudis</button>
       </Link>
+      <Link to="/halda">
+        <button>Tooteid Haldama</button>
+      </Link>
 
     <Routes>
 <Route path='' element={ <Avaleht />} />
@@ -33,6 +37,7 @@ function App() {
 <Route path='kontakt' element={ <Kontaktid />} />
 <Route path='meist' element={ <Meist/>} />
 <Route path='lisa-uudis' element={ <LisaUudis />} />
+<Route path='halda' element={<HaldaUudiseid />} />
     </Routes>
 
   </div>

@@ -27,7 +27,7 @@ function Tagasiside() {
             <label>Lisa uus tagasiside:</label>
             <input ref={tagasisideRef} type="text" />
             <button onClick={() => lisaUusTagasiside()}>Sisesta</button>
-    </div>)
+    </div>);
 }
 
 export default Tagasiside;
