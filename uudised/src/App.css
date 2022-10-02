@@ -1,0 +1,89 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+.avaleht {
+  font-size: x-large;
+  text-align: center; 
+}
+
+.avaleht-pilt {
+  height:800px;
+  width: 1450px;
+}
+
+.meist-pilt {
+height:800px;
+width:1450px;
+margin:auto;
+}
+
+.meist{
+  text-align: center;
+  font-size: x-large;
+  align-items: center;
+}
+
+.uudiste-pilt {
+  height: 700px;
+  width: 1450px;
+  margin: auto;
+}
+
+.uudised {
+  text-align: center;
+  font-size: x-large;
+  align-items: center;
+}
+
+.kontaktide-pilt {
+  height: 600px;
+  width: 500px;
+}
+
+.kontakt{
+  text-align: center;
+  font-size: x-large; 
+}
+
+body {
+  background-color: rosybrown;
+  
+}
+

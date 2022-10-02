@@ -1,0 +1,18 @@
+/* CSS on kujundusfail, klassid peavad olema täpselt nagu HTMLs
+klassid peavad algama punktiga ning kood läheb loogeliste sulgude sisse*/
+.nupp {
+  font-weight: bold;
+}
+
+.nupp:hover {
+cursor: crosshair;
+}
+
+.pilt {
+  height: 200px;
+}
+/* kui on :hover, siis see kujundus aplikeerub kui hiirega üle minnakse */
+.pilt:hover {
+border-radius: 10px;
+/* border-radius on nurkade muutmiseks (10px kauguselt hakatkse kaart tekitama) */
+}

@@ -1,0 +1,42 @@
+
+.nupp {
+  font-weight: bold;
+  background-color: green;
+  color: lightgray;
+  float: right;
+  height: 50px;
+
+}
+
+.nupp:hover {
+cursor: crosshair;
+height: 100px;
+}
+.nupp:active {
+  cursor: grab;
+
+}
+.pilt {
+  height: 300px;
+  width: 500px;
+  float: right;
+}
+#cyber {
+  margin-top:20px;
+  margin-bottom:20px;
+
+}
+#cyber a {
+  font-weight: bold;
+  font-size: 24px;
+  font-style: italic;
+  color: blue;
+ 
+}
+#cyber a:hover {
+  font-size:88px;
+  font-size-adjust:24px;
+}
+body {
+  background-color: beige;
+}
