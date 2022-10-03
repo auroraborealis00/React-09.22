@@ -4,6 +4,7 @@
 
 
 import { useState } from "react";
+import { Link } from "react-router-dom";
 // apiKey: "AIzaSyBLRl3Odac7jaAmTj9zsGKuiHRpUq9N50Y"
 // backspace - panen vasakule
 function Avaleht() {
@@ -55,9 +56,13 @@ return (
     <span> {kogus} </span>
     <button onClick={suurenda}>+</button>
 
-{tooted.map(element =>
+
+{tooted.map((element,index) =>
      <div key={element}>
-       <div>{element}</div> 
+<Link to={"/toode/" + index}>
+       <div>{element.nimi}</div> 
+       </Link>
+
        <button onClick={() => lisaOstukorvi(element)}>Lisa ostukorvi</button>
        </div>)}
 

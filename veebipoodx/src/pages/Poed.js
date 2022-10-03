@@ -46,7 +46,14 @@ const kustuta = (j2rjekorraNumber) => {
 }
 
 const lisaPood = () => {
-    poed.push(poodRef.current.value); // animals.push ("cows" animals.push("chicken", "cats", "dogs"))
+    const uusPood = {  
+        "nimetus": poodRef.current.value,
+        "aeg": aegRef.current.value,
+        "aadress": aadressRef.current.value,
+        "kommentaarid": kommentaaridRef.current.value
+    
+    }
+    poed.push(uusPood); // animals.push ("cows" animals.push("chicken", "cats", "dogs"))
     uuendaPoed(poed.slice()); // .slice() -- teeb koopia EHK kustutab esialgse mälukoha
 }
     // function lisaPood() {
@@ -70,6 +77,10 @@ const muudaK6iki = () => {
 
 const indexRef = useRef();
 const uusRef = useRef();
+const aadressRef = useRef();
+const kommentaaridRef = useRef();
+const aegRef = useRef();
+
 
 const muudaPood = () => {
 // ["Mustamäe", "Õismäe", "Kristiine", "Põhja-Tallinn", "Kesklinn"][1] = "Kakumäe";
@@ -99,15 +110,22 @@ const vaata = (pood) => {
 
 <label>Uus pood</label> <br />
 <input ref={poodRef} type="text" /> <br />
+<label>Lahtiolekuaeg</label> <br />
+<input ref={aegRef} type="text" /> <br />
+<label>Aadress</label> <br />
+<input ref={aadressRef} type="text" /> <br />
+<label>Kommentaarid</label> <br />
+<input ref={kommentaaridRef} type="text" /> <br />
 <button onClick={lisaPood}>Lisa uus pood</button> <br />
 
 {/* .map() on array-de kuvamiseks HTMLś, siis teen selle funktsionaalsuse, mis on sisus tsükkel tehakse noole paremat poolt nii mitu korda kui mitu komaga eristatud elementi mul on */}
-<div>Sinu valitud pood: {valitudPood} </div>
+<div>Sinu valitud pood: {valitudPood.nimetus} </div>
 
 <div>Poode on {poed.length} tk</div>
 
 {poed.map((pood, index) => 
-  <div key={pood}>{pood} 
+  <div key={index}>
+    {pood.nimetus}  {pood.aeg}
 <button onClick={() => kustuta(index)}>x</button>
 <button onClick={() => vaata(pood)}>Vaata</button>
 </div>)} 
