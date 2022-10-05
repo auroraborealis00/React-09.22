@@ -18,7 +18,7 @@ const lisa = () => {
         tootedLS = JSON.parse(tootedLS) || [];
         const uusToode = {
             "nimi": nimiRef.current.value,
-            "hind": hindRef.current.value,
+            "hind": Number (hindRef.current.value),
             "pilt": piltRef.current.value
         }
         tootedLS.push(uusToode);
@@ -35,7 +35,7 @@ const lisa = () => {
         <input ref={nimiRef} type="text" /> <br />
      
         <label>Hind</label> <br />
-        <input ref={hindRef} type="text" /> <br />
+        <input ref={hindRef} type="number" /> <br />
     
         <label>Pilt</label> <br />
         <input ref={piltRef} type="text" /> <br />

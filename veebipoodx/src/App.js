@@ -1,7 +1,6 @@
 
 import { Link, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Avaleht from './pages/Avaleht';
 import Lisatoode from './pages/Lisatoode';
 import Meist from './pages/Meist';
 import Ostukorv from './pages/Ostukorv';
@@ -10,6 +9,7 @@ import Poed from './pages/Poed';
 import HaldaTooteid from './pages/HaldaTooteid';
 import MuudaTooteid from './pages/MuudaTooteid';
 import YksikToode from './pages/YksikToode';
+import Koduleht from './pages/Koduleht';
 
 function App() {
   return (
@@ -43,7 +43,7 @@ function App() {
     
     
     <Routes>
-    <Route path="" element={ <Avaleht/>} />
+    <Route path="" element={<Koduleht/>} />
     <Route path="lisa-toode" element={ <Lisatoode/>} />
     <Route path="meist" element={ <Meist/>} />
     <Route path="ostukorv" element={ <Ostukorv/>} />

@@ -1,4 +1,5 @@
 import {useState } from "react";
+import { Link } from "react-router-dom";
 
 
 function HaldaUudiseid() {
@@ -16,6 +17,9 @@ function HaldaUudiseid() {
            <div>
             <div>{uudis}</div>
             <button onClick={() => kustuta(index)}>x</button>
+            <Link to={"/muuda/" + index}>
+                <button>Muuda</button>
+            </Link>
             </div>
             )}</div>
         </div> );
