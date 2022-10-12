@@ -103,7 +103,7 @@ const vaata = (pood) => {
  return ( 
     <div>
 <button onClick={sorteeri}>Sorteeri A-Z </button>
-<button onClick={tyhjenda}>Tühjeda</button> 
+<button onClick={tyhjenda}>Tühjenda</button> 
 <button onClick={filtreeri}>Jäta vaid "mäe" -d  sisaldavad alles</button>
 <button onClick={muudaK6iki}>Muuda kõiki</button>
 <br />

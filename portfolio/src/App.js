@@ -2,13 +2,18 @@
 import { Link, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Work from './pages/work';
+import { useTranslation } from 'react-i18next';
 // cmnd+shift+ <---avada menüü
 //Open User Setting (JSON)   
 function App() {
+  const { t, i18n } = useTranslation();
+
   return (
     <div className="App">
        
     <div className="navigation-pictures">
+    <div> {t('Welcome to React')} </div>
+
       <Link to="work">
       <img src="https://www.cyberpunk.net/build/images/home3/screen-image-city-209a8285.jpg" alt="" />
       </Link>
