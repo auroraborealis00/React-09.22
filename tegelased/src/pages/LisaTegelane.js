@@ -2,7 +2,7 @@ import { useRef } from "react" ;
 import { useState } from "react" ;
 
 function LisaTegelane() {
-  const [s6num, uuendaS6num] = useState("Lisa uus");
+  const [s6num, uuendaS6num] = useState("");
   const nimiRef = useRef ();
     
    const lisa = () => {
