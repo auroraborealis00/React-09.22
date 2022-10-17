@@ -4,58 +4,81 @@ import Pagination from "react-bootstrap/Pagination";
 import { useState } from "react";
 
 function Products() {
-    const[categoryProducts, setCategoryProducts] = useState(productsFromFile);
+    const[categoryProducts, setCategoryProducts] = useState(productsFromFile.slice());
     const [products, setProducts] = useState(productsFromFile.slice(0,20));
     const categories = [...new Set(productsFromFile.map(element => element.category))];
-
     const [activePage, setActivePage] = useState(1);
+
     const pages = [];
 for (let index = 0; index < categoryProducts.length/20; index++) {
     pages.push(index + 1);
 }
-
     const sortAZ = () => {
-        products.sort((a,b) => a.name.localeCompare(b.name));
-        setProducts(products.slice());
+        categoryProducts.sort((a,b) => a.name.localeCompare(b.name));
+        setProducts(categoryProducts.slice(0,20));
+        setActivePage(1);
     }
-
     const sortZA = () => {
-        products.sort((a,b) => b.name.localeCompare(a.name));
-        setProducts(products.slice());
+        categoryProducts.sort((a,b) => b.name.localeCompare(a.name));
+        setProducts(categoryProducts.slice(0,20));
+        setActivePage(1);
     }
-
     const sortPriceAsc = () => {
-        products.sort((a,b) => a.price - b.price);
-        setProducts(products.slice());
+        categoryProducts.sort((a,b) => a.price - b.price);
+        setProducts(categoryProducts.slice(0,20));
+        setActivePage(1);
     }
-
     const sortPriceDesc = () => {
         products.sort((a,b) => b.price - a.price);
-        setProducts(products.slice());
+        setProducts(products.slice(0,20));
+        setActivePage(1);
     }
-
     const sortIdAsc = () => {
-        products.sort((a,b) => a.id - b.id);
-        setProducts(products.slice());
+        categoryProducts.sort((a,b) => a.id - b.id);
+        setProducts(categoryProducts.slice(0,20));
+        setActivePage(1);
     }
-
     const sortIdDesc = () => {
-        products.sort((a,b) => b.id - a.id);
-        setProducts(products.slice());
+        categoryProducts.sort((a,b) => b.id - a.id);
+        setProducts(categoryProducts.slice(0,20));
+        setActivePage(1);
     }
     const showByCategory = (categoryClicked) => {
-
         const result = productsFromFile.filter(element => element.category === categoryClicked);
         setCategoryProducts(result);
         setProducts(result.slice(0,20));
         setActivePage(1);
     }
-
-
 const changeActivePage = (pageClicked) => {
     setActivePage(pageClicked);
     setProducts(categoryProducts.slice(pageClicked*20-20,pageClicked*20));
 }
+
+const addToCart = (productClicked) => {
+    let cartLS = localStorage.getItem("cart");
+    cartLS = JSON.parse(cartLS) || [];
+    const index = cartLS.findIndex(element => element.product.id === productClicked.id);
+    if (index === -1) {
+    cartLS.push({product: productClicked, quantity: 1});
+    } else {
+cartLS[index].quantity = cartLS[index].quantity + 1;
+    }
+    cartLS = JSON.stringify(cartLS);
+    localStorage.setItem("cart", cartLS);
+}
+   // localStorage.clear(); // method function tühjendada kogu localStorage
+    // let productsLS = localStorage.getItem("products"); // võtta võtme alusel väärtus
+    // let languageKey = localStorage.key(3); // mitmendat järjekorras ma kasutusele võtta tahan
+    // console.log(localStorage.length); // property key---> value mitu tk
+    // localStorage.removeItem(); // saan eemaldada seda võti-väärtus paari
+    // localStorage.setItem("võti", "väärtus"); // saan võtme alusel lisada väärtust
+
+    // const midagi = JSON.parse("sõna") // võta jutumärgid maha
+    // const string = JSON.stringify(cartLS) // pane jutumärgid peale
+
+    // console.log("dasdasd");
+
+
     return ( 
     <div>
         <Pagination>
@@ -64,7 +87,6 @@ const changeActivePage = (pageClicked) => {
       {number}
     </Pagination.Item>)}
 </Pagination>
-
         {categories.map(element =>
             <button key={element} onClick={() => showByCategory(element)}>
                 {element}
@@ -83,7 +105,7 @@ const changeActivePage = (pageClicked) => {
             <img src={element.image} alt="" />
             <div>{element.name}</div>
             <div>{element.price}</div>
-            <Button variant="success">Lisa ostukorvi</Button>
+            <Button onClick={() => addToCart(element)} variant="success">Lisa ostukorvi</Button>
             </div>
             )}
     </div> );
