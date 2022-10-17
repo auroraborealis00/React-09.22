@@ -3,6 +3,7 @@ import './App.css';
 import Tagasiside from './pages/Tagasiside';
 import TagasideAndjad from './pages/TagasisideAndjad';
 import Kasutajad from './pages/Kasutajad';
+import Tegevused from './pages/Tegevused';
 
 function App() {
   return (
@@ -19,11 +20,15 @@ function App() {
       <Link to="/kasutajad">
         <button>Vaata, kes on kasutajad</button>
       </Link>
+      <Link to="/tegevused">
+        <button>Vaata, mis ülesandeid veel tegema pead</button>
+      </Link>
 <Routes>
   <Route path="/" exact element={<div>Tere</div>} />
   <Route path="/tagasiside" exact element={ <Tagasiside />} />
   <Route path="/andjad" exact element={ <TagasideAndjad />} />
   <Route path="/kasutajad" exact element={ <Kasutajad />} />
+  <Route path="/tegevused" exact element={ <Tegevused />} />
 </Routes>
     </div>
   );

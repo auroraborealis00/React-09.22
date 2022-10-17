@@ -34,7 +34,7 @@ function Kasutajad() {
     }
     const sumIds = () => {
         let sum = 0;
-        kasutajad.forEach(user => sum = + user.id);
+        kasutajad.forEach(user => sum = sum + user.id);
         console.log(sum);
     }
     const addToPhoneNumber = () => {
@@ -50,14 +50,14 @@ function Kasutajad() {
             const result = kasutajad.map(user => (
                 {...user, company: {...user.company, catchPhrase: user.company.catchPhrase.replaceAll("a", "e")}}
             ));
-            uuendaKasutajad(result);    
+            uuendaKasutajad(result);
+           
     }
 
     return ( <div>
         <div>{kasutajad.length}</div>
         <button onClick={() => allBack()}>0</button>
-        <button onClick={() => filterName()}>1</button>
-        <button onClick={() => findIndexAndDelete()}>1</button>
+        <button onClick={() => filterName()}>1</button> 
         <button onClick={() => findIndexLucio()}>3</button>
         <button onClick={() => findFirstNameC()}>4</button>
         <button onClick={() => sortByLatitude()}>5</button>
@@ -73,6 +73,18 @@ function Kasutajad() {
 <div>{kasutaja.username}</div>
 <div>{kasutaja.email}</div>
 <div>{kasutaja.address.street}</div>
+<div>{kasutaja.address.suite}</div>
+<div>{kasutaja.address.city}</div>
+<div>{kasutaja.address.zipcode}</div>
+<div>{kasutaja.address.geo.lat}</div>
+<div>{kasutaja.address.geo.lng}</div>
+<div>{kasutaja.phone}</div>
+<div>{kasutaja.website}</div>
+<div>{kasutaja.company.name}</div>
+<div>{kasutaja.address.catchPhrase}</div>
+<div>{kasutaja.company.bs}</div>
+<button onClick={() => findIndexAndDelete(kasutaja)}>2</button>
+<br />
 </div>)}</div>
     </div> );
 }

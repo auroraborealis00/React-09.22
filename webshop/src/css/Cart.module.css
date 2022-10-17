@@ -34,6 +34,7 @@ padding: 10px 0; /* px, % (parent elemendist), ViewHeight (minu ekraani kõrguse
 }
 .button {
 
+    height: 30px;
     
 }
 body {
