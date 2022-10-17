@@ -67,7 +67,7 @@ function Kasutajad() {
         <button onClick={() => replaceAllWithEmails()}>9</button>
         <button onClick={() => replaceCatchphraseLetter()}>10</button>
         <div>{kasutajad.map(kasutaja =>
-        <div>
+        <div key={kasutaja.id}>
 <div>{kasutaja.id}</div>
 <div>{kasutaja.name}</div>
 <div>{kasutaja.username}</div>
