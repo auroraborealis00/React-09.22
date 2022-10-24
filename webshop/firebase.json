@@ -1,5 +1,9 @@
 {
+  "database": {
+    "rules": "database.rules.json"
+  },
   "hosting": {
+    "site": "React-09-22m",
     "public": "build",
     "ignore": [
       "firebase.json",
