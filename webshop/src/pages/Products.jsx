@@ -2,13 +2,23 @@ import productsFromFile from "../data/products.json";
 import Button from "react-bootstrap/Button";
 import Pagination from "react-bootstrap/Pagination";
 import { useState } from "react";
+import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
+import { useEffect } from "react";
 
 function Products() {
     const[categoryProducts, setCategoryProducts] = useState(productsFromFile.slice());
     const [products, setProducts] = useState(productsFromFile.slice(0,20));
     const categories = [...new Set(productsFromFile.map(element => element.category))];
-    const [activePage, setActivePage] = useState(1);
 
+    useEffect(() => {
+        const api = new WooCommerceRestApi({
+            url: "http://example.com",
+            consumerKey: "ck_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+            consumerSecret: "cs_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+            version: "wc/v3"
+          });
+          }, []);
+    const [activePage, setActivePage] = useState(1);
     const pages = [];
 for (let index = 0; index < categoryProducts.length/20; index++) {
     pages.push(index + 1);
