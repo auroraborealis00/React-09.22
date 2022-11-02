@@ -1,4 +1,4 @@
-import productsFromFile from "../data/products.json";
+
 import Button from "react-bootstrap/Button";
 import Pagination from "react-bootstrap/Pagination";
 import { useState } from "react";
@@ -6,62 +6,77 @@ import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
 import { useEffect } from "react";
 
 function Products() {
-    const[categoryProducts, setCategoryProducts] = useState(productsFromFile.slice());
-    const [products, setProducts] = useState(productsFromFile.slice(0,20));
-    const categories = [...new Set(productsFromFile.map(element => element.category))];
+    const [dbProducts, setDbProducts] = useState([]); // SIIN SEES ON KÕIK ANDMEBAASITOOTED //
+    const[categoryProducts, setCategoryProducts] = useState([]); // SIIN SEES ON ÜHE KATEGOORIA LÕIKES TOOTED//
+    const [products, setProducts] = useState([]); // SIIN SEES ON ÜHE KATEGOORIA ÜHE LEHEKÜLJE TOOTED //
+    const [categories, setCategories] = useState([]);
 
     useEffect(() => {
         const api = new WooCommerceRestApi({
-            url: "http://example.com",
-            consumerKey: "ck_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-            consumerSecret: "cs_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
-            version: "wc/v3"
+            url: "http://192.168.64.2",
+            consumerKey: "ck_e6a002fb6ab67ea7446cf8a628668d72b92d00d6",
+            consumerSecret: "cs_c059e1ed42dbd82d28347eb13172a7e2ee91c42b",
+            version: "wc/v3",
+            axiosConfig: {
+                headers: {'Content-Type': 'application/json'},
+              }
           });
+          api.get("products", {
+            per_page: 100, // 20 products per page
+          })
+            .then((response) => {
+              // Successful request
+              setDbProducts (response.data);
+              setProducts(response.data.slice(0,3));
+              setCategoryProducts(response.data);
+              setCategories([...new Set(response.data.map(element => element.categories[0].name))])
+            })
           }, []);
+
     const [activePage, setActivePage] = useState(1);
     const pages = [];
-for (let index = 0; index < categoryProducts.length/20; index++) {
+for (let index = 0; index < categoryProducts.length/3; index++) {
     pages.push(index + 1);
 }
     const sortAZ = () => {
         categoryProducts.sort((a,b) => a.name.localeCompare(b.name));
-        setProducts(categoryProducts.slice(0,20));
+        setProducts(categoryProducts.slice(0,3));
         setActivePage(1);
     }
     const sortZA = () => {
         categoryProducts.sort((a,b) => b.name.localeCompare(a.name));
-        setProducts(categoryProducts.slice(0,20));
+        setProducts(categoryProducts.slice(0,3));
         setActivePage(1);
     }
     const sortPriceAsc = () => {
         categoryProducts.sort((a,b) => a.price - b.price);
-        setProducts(categoryProducts.slice(0,20));
+        setProducts(categoryProducts.slice(0,3));
         setActivePage(1);
     }
     const sortPriceDesc = () => {
         products.sort((a,b) => b.price - a.price);
-        setProducts(products.slice(0,20));
+        setProducts(products.slice(0,3));
         setActivePage(1);
     }
     const sortIdAsc = () => {
         categoryProducts.sort((a,b) => a.id - b.id);
-        setProducts(categoryProducts.slice(0,20));
+        setProducts(categoryProducts.slice(0,3));
         setActivePage(1);
     }
     const sortIdDesc = () => {
         categoryProducts.sort((a,b) => b.id - a.id);
-        setProducts(categoryProducts.slice(0,20));
+        setProducts(categoryProducts.slice(0,3));
         setActivePage(1);
     }
     const showByCategory = (categoryClicked) => {
-        const result = productsFromFile.filter(element => element.category === categoryClicked);
+        const result = dbProducts.filter(element => element.categories[0].name === categoryClicked);
         setCategoryProducts(result);
-        setProducts(result.slice(0,20));
+        setProducts(result.slice(0,3));
         setActivePage(1);
     }
 const changeActivePage = (pageClicked) => {
     setActivePage(pageClicked);
-    setProducts(categoryProducts.slice(pageClicked*20-20,pageClicked*20));
+    setProducts(categoryProducts.slice(pageClicked*3-3,pageClicked*3));
 }
 
 const addToCart = (productClicked) => {
@@ -111,8 +126,8 @@ cartLS[index].quantity = cartLS[index].quantity + 1;
 <button onClick={sortIdDesc}>Sorteeri uuemad enne</button>
 
         {products.map(element =>
-        <div key={element.id}>
-            <img src={element.image} alt="" />
+        <div className="product" key={element.id}>
+            { element.images[0] !== null && <img src={element.images[0].src} alt="" />}
             <div>{element.name}</div>
             <div>{element.price}</div>
             <Button onClick={() => addToCart(element)} variant="success">Lisa ostukorvi</Button>
