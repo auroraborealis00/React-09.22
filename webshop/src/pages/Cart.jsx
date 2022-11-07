@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useRef } from "react";
 import styles from "../css/Cart.module.css";
+import WooCommerceRestApi from "@woocommerce/woocommerce-rest-api";
 
 
 function Cart() {
@@ -44,20 +45,34 @@ return sum.toFixed(2);
         localStorage.setItem("cart", JSON.stringify(cart));
 
     }
+const sendOrder = () => {
+    console.log(pmRef.current.value);
+    console.log(cart);
+    const api = new WooCommerceRestApi({
+        url: "http://192.168.64.2",
+        consumerKey: "ck_e6a002fb6ab67ea7446cf8a628668d72b92d00d6",
+        consumerSecret: "cs_c059e1ed42dbd82d28347eb13172a7e2ee91c42b",
+        version: "wc/v3",
+        queryStringAuth: true,
+        axiosConfig: {
+            headers: {'Content-Type': 'application/json'},
+          }
+      });
+const woocommerceCart = cart.map(element => { 
+    return {product_id: element.product.id, quantity: element.quantity}
+});
+api.post("orders", {"line_items": woocommerceCart})
+.then(res => pay(res.data.id))
 
-    // const sendOrder = () => {
-       //  console.log(pmRef.current.value);
-       // console.log(cart);
-   //  }
-
-
-    const pay = () => {
+}
+    
+    const pay = (orderId) => {
         const data = 
             {
                 "api_username": "92ddcfab96e34a5f",
                 "account_name": "EUR3D1",
                 "amount": calculateCartSum(),
-                "order_reference": Math.random() *999999,
+                "order_reference": orderId,
                 "nonce": "a9b7f7easda2123" + Math.random() * 999999 + new Date(),
                 "timestamp": new Date(),
                 "customer_url": "https://react-09-22-v.web.app"
@@ -107,7 +122,7 @@ return sum.toFixed(2);
     <option key={element.NAME}>{element.NAME}</option>)}
     </select>
 
-<button onClick={pay}>Vormista tellimus</button>
+<button onClick={sendOrder}>Vormista tellimus</button>
 </div>}
 { cart.length === 0 && 
 <div>
