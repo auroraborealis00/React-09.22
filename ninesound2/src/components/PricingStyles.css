@@ -1,0 +1,77 @@
+.pricing {
+    width: 100%;
+    padding: 6rem 1rem;
+    background-color: #000;
+}
+.card-container {
+    max-width: 1140px;
+    margin: auto;
+    display: grid;
+    grid-gap: 40px;
+    text-align: center;
+    grid-template-columns: repeat(3, 1fr);
+}
+.card-container .card {
+    border: 1px solid #eee;
+    color: #eee;
+    border-bottom-width: 1rem;
+    text-align: center;
+}
+.card {
+    flex: 1 1 21rem;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px 2px;
+    flex-direction: column;
+    padding: 10px 20px;
+    align-self: normal;
+ 
+}
+.card:hover {
+    background-color: #141414;
+}
+.card h3 {
+    font-size: 4rem;
+    font-weight: 600;
+    padding: 1rem;
+}
+.card .btc {
+    font-size: 4rem;
+    font-weight: 900;
+    padding: 1rem;
+   text-align: center;
+}
+.pricing p {
+    color: #eee;
+    padding: 1rem 0;
+    margin: 2rem;
+    font-size: 1.2rem;
+    text-align: center;
+}
+.card p{
+    
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.card .btn {
+    display: inline-block;
+    margin-top: auto;
+    background: #eee;
+    color: #000;
+    text-align: center;
+    padding:10px 20px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+@media screen and (max-width: 980px) {
+    .card-container {
+        max-width: 90%;
+        margin: auto;
+        grid-template-columns: 1fr;
+    }
+}
